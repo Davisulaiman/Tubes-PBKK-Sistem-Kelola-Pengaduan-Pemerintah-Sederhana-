@@ -46,17 +46,17 @@
                         </div>
                     </div>
                 </div>
-                <!-- Data Pelapor Card -->
+                <!-- Data Pengguna Card -->
                 <div class="col-xl-4 col-md-6 mb-4">
                     <div class="card bg-secondary text-white h-100">
                         <div class="card-header">
                             <h5 class="card-title mb-0">
                                 <i class="fas fa-user me-2"></i>
-                                Data Pelapor
+                                Data Pengguna
                             </h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">Informasi detail pelapor</p>
+                            <p class="card-text">Informasi detail pengguna</p>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-between">
                             <a class="text-white text-decoration-none" href="{{ url('/pelapor') }}">Lihat Detail</a>

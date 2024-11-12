@@ -29,6 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/kelola-pengaduan', [LaporanController::class, 'kelolapengaduan'])->name('laporan.kelolaPengaduan');
     Route::post('/laporan/{id}/update-status', [LaporanController::class, 'updateStatus'])->name('laporan.updateStatus');
     Route::get('/laporan/print/{id}', [LaporanController::class, 'print'])->name('laporan.print');
+    Route::get('laporan/{id}/edit', [LaporanController::class, 'edit'])->name('laporan.edit');
+    Route::put('laporan/{id}', [LaporanController::class, 'update'])->name('laporan.update');
+    Route::delete('laporan/{id}', [LaporanController::class, 'destroy'])->name('laporan.destroy');
 
     // Routes for Obrolan Pengaduan
     Route::get('/obrolan/{laporanId}', [ObrolanPengaduanController::class, 'index'])->name('obrolan.index');

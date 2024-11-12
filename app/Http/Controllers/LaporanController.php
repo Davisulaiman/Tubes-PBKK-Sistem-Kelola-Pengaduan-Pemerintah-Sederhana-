@@ -152,24 +152,51 @@ class LaporanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $laporan = Laporan::findOrFail($id);
+        if (!$laporan) {
+            return redirect()->back()->with('error', 'Laporan tidak ditemukan.');
+        }
+        return view('laporan.edit', compact('laporan'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $laporan = Laporan::findOrFail($id);
+
+        // Validasi dan pembaruan laporan
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'keluhan' => 'required|string',
+        ]);
+
+        $laporan->update([
+            'nama' => $request->input('nama'),
+            'keluhan' => $request->input('keluhan'),
+            // Tambahkan pembaruan lainnya sesuai kebutuhan
+        ]);
+
+        // Redirect setelah berhasil
+        return redirect()->route('laporan.index')->with('success', 'Laporan berhasil diperbarui.');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $laporan = Laporan::findOrFail($id);
+
+        if ($laporan) {
+            $laporan->delete();
+            return redirect()->route('laporan.index')->with('success', 'Laporan berhasil dihapus.');
+        }
+        return back()->with('error', 'Laporan tidak ditemukan.');
     }
+
 }
